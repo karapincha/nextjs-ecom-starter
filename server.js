@@ -1,8 +1,8 @@
 const { createServer } = require("https");
 const { parse } = require("url");
 const next = require("next");
-const fs = require("fs");
 const emoji = require("node-emoji");
+const fs = require("fs");
 
 const port = 3000;
 const dev = process.env.NODE_ENV !== "production";

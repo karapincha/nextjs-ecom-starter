@@ -1,19 +1,19 @@
-const { createServer } = require("https")
-const { parse } = require("url")
-const next = require("next")
-const emoji = require("node-emoji")
-const fs = require("fs")
+const { createServer } = require('https')
+const { parse } = require('url')
+const next = require('next')
+const emoji = require('node-emoji')
+const fs = require('fs')
 
 const port = 3000
-const dev = process.env.NODE_ENV !== "production"
-const hostname = "ecommerce.local"
+const dev = process.env.NODE_ENV !== 'production'
+const hostname = 'localhost'
 const app = next({ dev, hostname, port })
 
 const handle = app.getRequestHandler()
 
 const httpsOptions = {
-  key: fs.readFileSync("./ecommerce.local-key.pem"),
-  cert: fs.readFileSync("./ecommerce.local.pem"),
+  key: fs.readFileSync(`./${hostname}-key.pem`),
+  cert: fs.readFileSync(`./${hostname}.pem`),
 }
 
 app.prepare().then(() => {
@@ -23,9 +23,9 @@ app.prepare().then(() => {
   }).listen(port, (err) => {
     if (err) throw err
     console.log(
-      "\x1b[32m",
+      '\x1b[32m',
       `${emoji.get(
-        "popcorn"
+        'popcorn'
       )} Ready — started http(s) enabled server on url: https://${hostname}:${port}`
     )
   })

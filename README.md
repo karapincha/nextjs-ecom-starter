@@ -9,26 +9,26 @@ Navigate to project root folder through a CLI and run below commands one-by-one
 ```bash
 brew install mkcert
 mkcert -install
-mkcert ecommerce.local
+mkcert localhost
 ```
 
 <br />
 
 ## 02. Setup local domain for dev environment (MacOS)
 
-01. Run below command in `Terminal` to open `hosts` file.
+1.  Run below command in `Terminal` to open `hosts` file.
 
 ```bash
 sudo nano /etc/hosts # Enter computer password when asked
 ```
 
-02. Add below line at the end of the `hosts` file
+2.  Add below line at the end of the `hosts` file
 
 ```bash
 127.0.0.1    ecommerce.local
 ```
 
-03. Save file and exit. 
+3.  Save file and exit.
 
 ```
 01. CTRL + O and Enter
@@ -45,35 +45,38 @@ sudo nano /etc/hosts # Enter computer password when asked
 2.  Put below code to the file
 
 ```bash
-const { createServer } = require("https");
-const { parse } = require("url");
-const next = require("next");
-const fs = require("fs");
+const { createServer } = require('https')
+const { parse } = require('url')
+const next = require('next')
+const emoji = require('node-emoji')
+const fs = require('fs')
 
-const port = 3000;
-const dev = process.env.NODE_ENV !== "production";
-const hostname = "ecommerce.local";
-const app = next({ dev, hostname, port });
+const port = 3000
+const dev = process.env.NODE_ENV !== 'production'
+const hostname = 'localhost'
+const app = next({ dev, hostname, port })
 
-const handle = app.getRequestHandler();
+const handle = app.getRequestHandler()
 
 const httpsOptions = {
-	key: fs.readFileSync("./ecommerce.local-key.pem"),
-	cert: fs.readFileSync("./ecommerce.local.pem"),
-};
+  key: fs.readFileSync(`./${hostname}-key.pem`),
+  cert: fs.readFileSync(`./${hostname}.pem`),
+}
 
 app.prepare().then(() => {
-	createServer(httpsOptions, (req, res) => {
-		const parsedUrl = parse(req.url, true);
-		handle(req, res, parsedUrl);
-	}).listen(port, (err) => {
-		if (err) throw err;
-		console.log(
-			"\x1b[33m%s\x1b[0m",
-			`Ready - started http(s) enabled server on url: https://${hostname}:${port}`
-		);
-	});
-});
+  createServer(httpsOptions, (req, res) => {
+    const parsedUrl = parse(req.url, true)
+    handle(req, res, parsedUrl)
+  }).listen(port, (err) => {
+    if (err) throw err
+    console.log(
+      '\x1b[32m',
+      `${emoji.get(
+        'popcorn'
+      )} Ready — started http(s) enabled server on url: https://${hostname}:${port}`
+    )
+  })
+})
 ```
 
 3. Replace `"dev": "next dev",` with `"dev": "node server.js",` in `package.json` file.

@@ -19,6 +19,8 @@
     "autoprefixer": "^10.4.8",
     "axios": "^0.27.2",
     "date-fns": "^2.29.1",
+    "flowbite": "^1.5.2",
+    "flowbite-react": "^0.1.5",
     "html-react-parser": "^3.0.1",
     "next": "12.2.4",
     "node-emoji": "^1.11.0",

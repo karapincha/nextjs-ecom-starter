@@ -49,7 +49,8 @@ app.prepare().then(() => {
 });
 ```
 
-3. Run ```yarn dev```
+3. Replace ```"dev": "next dev",``` with ```"dev": "node server.js",``` in `package.json` file.
+4. Run ```yarn dev```
 
 <br />
 

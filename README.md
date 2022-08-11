@@ -16,7 +16,7 @@ mkcert localhost
 
 ## 02. Setup localhost HTTPS enabled dev server
 
-1.  Create a file on root folder called `server.js`
+1.  Create a file on `root folder` called `server.js`
 2.  Put below code to the file
 
 ```bash

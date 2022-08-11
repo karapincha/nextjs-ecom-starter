@@ -2,6 +2,7 @@ const { createServer } = require("https");
 const { parse } = require("url");
 const next = require("next");
 const fs = require("fs");
+const emoji = require("node-emoji");
 
 const port = 3000;
 const dev = process.env.NODE_ENV !== "production";
@@ -22,8 +23,10 @@ app.prepare().then(() => {
 	}).listen(port, (err) => {
 		if (err) throw err;
 		console.log(
-			"\x1b[33m%s\x1b[0m",
-			`Ready - started http(s) enabled server on url: https://${hostname}:${port}`
+			"\x1b[32m",
+			`${emoji.get(
+				"popcorn"
+			)} Ready — started http(s) enabled server on url: https://${hostname}:${port}`
 		);
 	});
 });

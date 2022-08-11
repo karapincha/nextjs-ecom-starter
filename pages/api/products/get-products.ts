@@ -1,4 +1,3 @@
-import React from 'react'
 import { get } from 'utils/fetcher'
 
 async function getProducts(req: any, res: any) {

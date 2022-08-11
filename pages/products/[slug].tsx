@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { fetch } from 'utils/fetcher'
+import { get } from 'utils/fetcher'
 
 import { Badge, Button } from 'flowbite-react'
 
@@ -64,7 +64,7 @@ const Page: NextPage = ({ product }: any) => {
 // revalidation is enabled and a new request comes in
 export async function getStaticProps({ params }: any) {
   const { slug } = params
-  const product = await fetch(`/products/get-product`, { slug })
+  const product = await get(`/products/${slug}`)
 
   return {
     props: {
@@ -81,7 +81,7 @@ export async function getStaticProps({ params }: any) {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-  const products = await fetch(`/products/get-products`)
+  const products = await get(`/products`)
 
   // We'll pre-render only these paths at build time.
   // { fallback: blocking } will server-render pages

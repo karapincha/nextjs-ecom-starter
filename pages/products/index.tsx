@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { fetch } from 'utils/fetcher'
+import { get } from 'utils/fetcher'
 
 import { Badge } from 'flowbite-react'
 
@@ -74,7 +74,7 @@ const ProductCard = ({ product, ...rest }: any) => {
 }
 
 export async function getStaticProps() {
-  const products = await fetch(`/products/get-products`)
+  const products = await get(`/products`)
 
   return {
     props: { products },

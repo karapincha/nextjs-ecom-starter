@@ -18,20 +18,14 @@ const post = async (url: string, body?: any) => {
 }
 
 const fetch = async (url: string, body?: any) => {
-  const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_LOCAL_API}/${url}`,
-    {
-      params: body,
-    }
-  )
+  const response = await axios.get(`/api/${url}`, {
+    params: body,
+  })
   return response.data
 }
 
 const fetchPost = async (url: string, body?: any) => {
-  const response = await axios.post(
-    `${process.env.NEXT_PUBLIC_LOCAL_API}/${url}`,
-    body
-  )
+  const response = await axios.post(`/api/${url}`, body)
   return response.data
 }
 

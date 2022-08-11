@@ -17,7 +17,7 @@ const Page: NextPage = () => {
     setLoading(true)
 
     const getProducts = async () => {
-      const response = await fetch('/products/get-products')
+      const response = await fetch('products/get-products')
       setProducts(response)
       setLoading(false)
     }

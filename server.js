@@ -21,6 +21,7 @@ app.prepare().then(() => {
 	}).listen(port, (err) => {
 		if (err) throw err;
 		console.log(
+			"\x1b[33m%s\x1b[0m",
 			"Ready - started http(s) enabled server on url: https://localhost:" + port
 		);
 	});

@@ -11,14 +11,17 @@ const Page: NextPage = () => {
 				<link rel="icon" href="/favicon.png" />
 			</Head>
 
-			<main>
+			<main className="flex flex-col items-center gap-[32px] pt-[33vh] justify-center">
 				<Image
 					src="/logo.png"
 					width={100}
 					height={100}
 					alt="Next.js Ecommerce"
 				/>
-				<h1>Welcome to Next.js E-Commerce!</h1>
+				<h1 className="text-3xl font-bold underline">
+					Welcome to Next.js E-Commerce!
+				</h1>
+				<p>Powered by Karapincha Studio</p>
 			</main>
 		</>
 	);

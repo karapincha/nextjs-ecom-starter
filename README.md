@@ -35,6 +35,8 @@ sudo nano /etc/hosts # Enter computer password when asked
 02. CTRL + X
 ```
 
+`Now our local domain is (https://ecommerce.local)`
+
 <br />
 
 ## 02. Setup local HTTPS enabled dev server
@@ -50,25 +52,27 @@ const fs = require("fs");
 
 const port = 3000;
 const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
+const hostname = "ecommerce.local";
+const app = next({ dev, hostname, port });
 
 const handle = app.getRequestHandler();
 
 const httpsOptions = {
-  key: fs.readFileSync("./ecommerce.local-key.pem"),
-  cert: fs.readFileSync("./ecommerce.local.pem"),
+	key: fs.readFileSync("./ecommerce.local-key.pem"),
+	cert: fs.readFileSync("./ecommerce.local.pem"),
 };
 
 app.prepare().then(() => {
-  createServer(httpsOptions, (req, res) => {
-    const parsedUrl = parse(req.url, true);
-    handle(req, res, parsedUrl);
-  }).listen(port, (err) => {
-    if (err) throw err;
-    console.log(
-      "\x1b[33m%s\x1b[0m", `Ready - started http(s) enabled server on url: https://${hostname}:${port}`
-    );
-  });
+	createServer(httpsOptions, (req, res) => {
+		const parsedUrl = parse(req.url, true);
+		handle(req, res, parsedUrl);
+	}).listen(port, (err) => {
+		if (err) throw err;
+		console.log(
+			"\x1b[33m%s\x1b[0m",
+			`Ready - started http(s) enabled server on url: https://${hostname}:${port}`
+		);
+	});
 });
 ```
 

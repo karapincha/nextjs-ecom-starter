@@ -1,30 +1,23 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import Image from 'next/image'
 
-const Page: NextPage = () => {
-	return (
-		<>
-			<Head>
-				<title>Next.js E-commerce Starter Boilerplate</title>
-				<meta name="description" content="Boilerplate by Karapincha Studio" />
-				<link rel="icon" href="/favicon.png" />
-			</Head>
+const Page: NextPage = () => (
+  <>
+    <Head>
+      <title>Next.js E-commerce Starter Boilerplate</title>
+      <meta name="description" content="Boilerplate by Karapincha Studio" />
+      <link rel="icon" href="/favicon.png" />
+    </Head>
 
-			<main className="flex flex-col items-center gap-[32px] pt-[33vh] justify-center">
-				<Image
-					src="/logo.png"
-					width={100}
-					height={100}
-					alt="Next.js Ecommerce"
-				/>
-				<h1 className="text-3xl font-bold underline">
-					Welcome to Next.js E-Commerce!
-				</h1>
-				<p>Powered by Karapincha Studio</p>
-			</main>
-		</>
-	);
-};
+    <main className="flex flex-col items-center gap-[32px] pt-[33vh] justify-center">
+      <Image src="/logo.png" width={100} height={100} alt="Next.js Ecommerce" />
+      <h1 className="text-3xl font-bold underline">
+        Welcome to Next.js E-Commerce!
+      </h1>
+      <p>Powered by Karapincha Studio</p>
+    </main>
+  </>
+)
 
-export default Page;
+export default Page

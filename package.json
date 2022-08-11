@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node server.js",
-    "start": "node server.js",
+    "start": "next start",
     "build": "next build",
     "lint": "next lint",
     "eslint": "eslint \"**/*.+(js|jsx|ts|tsx)\"",

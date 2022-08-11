@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import axios from 'axios'
 
-import { fetch } from 'utils/fetcher'
+import { get } from 'utils/fetcher'
 
 import { Badge, Spinner } from 'flowbite-react'
 
@@ -17,7 +18,8 @@ const Page: NextPage = () => {
     setLoading(true)
 
     const getProducts = async () => {
-      const response = await fetch('products/get-products')
+      const response = await get('/products')
+
       setProducts(response)
       setLoading(false)
     }

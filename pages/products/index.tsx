@@ -21,7 +21,7 @@ const Page: NextPage = ({ products }: any) => {
         <Link href="/">
           <a>
             <Image
-              src="/logo.png"
+              src="/logo.svg"
               width={100}
               height={100}
               alt="Next.js Ecommerce"

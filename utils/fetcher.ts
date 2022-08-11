@@ -5,29 +5,39 @@ const API_URL =
     ? process.env.NEXT_PUBLIC_PROD_API
     : process.env.NEXT_PUBLIC_DEV_API
 
-const get = async (url: string, body?: any) => {
-  const response = await axios.get(`${API_URL}${url}`, {
-    params: body,
+const get = async (url: string) => {
+  const headers: any = {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  }
+
+  const response = await fetch(`${API_URL}${url}`, {
+    method: 'GET',
+    headers,
   })
-  return response.data
+
+  const json = await response.json()
+
+  if (json.errors) {
+    console.error(json.errors)
+  }
+
+  return json
 }
 
 const post = async (url: string, body?: any) => {
-  const response = await axios.post(`${API_URL}${url}`, body)
-  return response.data
-}
+  const headers: any = {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  }
 
-const fetch = async (url: string, body?: any) => {
-  const response = await axios.get(`/api/${url}`, {
-    params: body,
+  const response = await fetch(`${API_URL}${url}`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(body),
   })
-  return response.data
+  return response
 }
 
-const fetchPost = async (url: string, body?: any) => {
-  const response = await axios.post(`/api/${url}`, body)
-  return response.data
-}
-
-export { get, post, fetch, fetchPost }
+export { get, post }
 export default get

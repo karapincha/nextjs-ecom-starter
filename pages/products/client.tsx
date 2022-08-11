@@ -1,14 +1,34 @@
 import type { NextPage } from 'next'
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { fetch } from 'utils/fetcher'
 
-import { Badge } from 'flowbite-react'
+import { Badge, Spinner } from 'flowbite-react'
 
 /* Page */
-const Page: NextPage = ({ products }: any) => {
+const Page: NextPage = () => {
+  const [products, setProducts] = useState([])
+  const [isLoading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+
+    const getProducts = async () => {
+      const response = await fetch('/products/get-products')
+      setProducts(response)
+      setLoading(false)
+    }
+
+    getProducts()
+
+    return () => {
+      setLoading(false)
+    }
+  }, [])
+
   return (
     <>
       <Head>
@@ -32,11 +52,17 @@ const Page: NextPage = ({ products }: any) => {
       </header>
 
       <main className="container pb-[120px]">
-        <div className="grid grid-cols-4 gap-[32px]">
-          {products.map((product: any) => {
-            return <ProductCard key={product.id} product={product} />
-          })}
-        </div>
+        {isLoading ? (
+          <div className="flex justify-center">
+            <Spinner color="info" aria-label="Products loading" />
+          </div>
+        ) : (
+          <div className="grid grid-cols-4 gap-[32px]">
+            {products.map((product: any) => {
+              return <ProductCard key={product.id} product={product} />
+            })}
+          </div>
+        )}
       </main>
     </>
   )
@@ -71,14 +97,6 @@ const ProductCard = ({ product, ...rest }: any) => {
       </a>
     </Link>
   )
-}
-
-export async function getStaticProps() {
-  const products = await fetch(`/products/get-products`)
-
-  return {
-    props: { products },
-  }
 }
 
 export default Page

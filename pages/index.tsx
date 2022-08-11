@@ -22,10 +22,22 @@ const Page: NextPage = () => (
 
       <p>Powered by Karapincha Studio</p>
 
-      <div className="flex">
+      <div className="flex gap-[16px]">
         <Link href="/products">
           <a title="Browse Products">
-            <Button>Browse Products</Button>
+            <Button>Browse Products (Build time)</Button>
+          </a>
+        </Link>
+
+        <Link href="/products/client">
+          <a title="Browse Products">
+            <Button>Browse Products (Client side)</Button>
+          </a>
+        </Link>
+
+        <Link href="/products/server">
+          <a title="Browse Products">
+            <Button>Browse Products (Server side)</Button>
           </a>
         </Link>
       </div>

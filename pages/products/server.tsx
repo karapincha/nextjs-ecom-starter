@@ -73,7 +73,7 @@ const ProductCard = ({ product, ...rest }: any) => {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const products = await fetch(`/products/get-products`)
 
   return {

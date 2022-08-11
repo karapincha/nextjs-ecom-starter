@@ -15,6 +15,7 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
+    "@tailwindcss/line-clamp": "^0.4.0",
     "add": "^2.0.6",
     "autoprefixer": "^10.4.8",
     "axios": "^0.27.2",

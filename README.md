@@ -9,12 +9,35 @@ Navigate to project root folder through a CLI and run below commands one-by-one
 ```bash
 brew install mkcert
 mkcert -install
-mkcert localhost
+mkcert ecommerce.local
 ```
 
 <br />
 
-## 02. Setup localhost HTTPS enabled dev server
+## 02. Setup local domain for dev environment (MacOS)
+
+01. Run below command in `Terminal` to open `hosts` file.
+
+```bash
+sudo nano /etc/hosts # Enter computer password when asked
+```
+
+02. Add below line at the end of the `hosts` file
+
+```bash
+127.0.0.1    ecommerce.local
+```
+
+03. Save file and exit. 
+
+```
+01. CTRL + O and Enter
+02. CTRL + X
+```
+
+<br />
+
+## 02. Setup local HTTPS enabled dev server
 
 1.  Create a file on `root folder` called `server.js`
 2.  Put below code to the file
@@ -32,8 +55,8 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const httpsOptions = {
-  key: fs.readFileSync("./localhost-key.pem"),
-  cert: fs.readFileSync("./localhost.pem"),
+  key: fs.readFileSync("./ecommerce.local-key.pem"),
+  cert: fs.readFileSync("./ecommerce.local.pem"),
 };
 
 app.prepare().then(() => {
@@ -43,14 +66,14 @@ app.prepare().then(() => {
   }).listen(port, (err) => {
     if (err) throw err;
     console.log(
-      "Ready - started http(s) enabled server on url: https://localhost:" + port
+      "\x1b[33m%s\x1b[0m", `Ready - started http(s) enabled server on url: https://${hostname}:${port}`
     );
   });
 });
 ```
 
-3. Replace ```"dev": "next dev",``` with ```"dev": "node server.js",``` in `package.json` file.
-4. Run ```yarn dev```
+3. Replace `"dev": "next dev",` with `"dev": "node server.js",` in `package.json` file.
+4. Run `yarn dev`
 
 <br />
 

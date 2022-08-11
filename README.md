@@ -53,7 +53,7 @@ app.prepare().then(() => {
 
 <br />
 
-## 03. Run CORS Disabled Chrome
+## 03. Run CORS Disabled Chrome (MacOS)
 
 _IMPORTANT: Make sure not to click "Yes" on making the opened browser as default browser as it'll replace your computers default chrome's data._
 

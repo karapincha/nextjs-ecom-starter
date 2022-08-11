@@ -1,0 +1,21 @@
+import axios from 'axios'
+
+const API_URL =
+  process.env.NODE_ENV.trim() === 'production'
+    ? process.env.NEXT_PUBLIC_PROD_API
+    : process.env.NEXT_PUBLIC_DEV_API
+
+const get = async (url: string, body: any) => {
+  const response = await axios.get(`${API_URL}/${url}`, {
+    params: body,
+  })
+  return response.data
+}
+
+const post = async (url: string, body: any) => {
+  const response = await axios.post(`${API_URL}/${url}`, body)
+  return response.data
+}
+
+export { get, post }
+export default get
